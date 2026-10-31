@@ -1,5 +1,12 @@
 # Corona de puerta navideña
 
+![Corona terminada en la puerta (referencia)](../fotos/corona-puerta.jpg)
+*Corona terminada en la puerta (referencia)*
+
+![Vista general de la corona (referencia)](../fotos/corona-puerta-2.jpg)
+*Vista general de la corona (referencia)*
+
+
 **Nivel:** intermedio · **Tamaño:** ~35 cm de diámetro exterior · **Tiempo:** varios días (es un proyecto de piezas)
 
 Corona de puerta que combina todos los motivos de esta carpeta: hojas en capas, poinsettias rojas y crudas, piñas, racimos de bayas, campanas y lazo grande verde.

@@ -1,5 +1,9 @@
 # Lazo grande
 
+![El lazo grande verde, arriba de la corona (referencia, baja resolución)](../fotos/corona-puerta-2.jpg)
+*El lazo grande verde, arriba de la corona (referencia, baja resolución)*
+
+
 **Nivel:** principiante · **Tamaño:** ~18 cm de ancho con hilo worsted verde y gancho 4 mm
 
 Lazo de dos lazadas y dos colas con muescas, para colocar en la parte superior de la corona.

@@ -1,5 +1,15 @@
 # Poinsettia (flor de Pascua)
 
+![Poinsettia 3D en rojo y crudo con botón de madera (referencia)](../fotos/poinsettia-detalle.jpg)
+*Poinsettia 3D en rojo y crudo con botón de madera (referencia)*
+
+![Poinsettias rojas y crudas con hojas verdes (referencia)](../fotos/poinsettia.jpg)
+*Poinsettias rojas y crudas con hojas verdes (referencia)*
+
+![Esquema de la versión por pétalos: Petal ×5, Leaf ×5, Center ×1](../fotos/poinsettia-esquema.jpg)
+*Esquema de la versión por pétalos: Petal ×5, Leaf ×5, Center ×1*
+
+
 Tres versiones de la misma flor. Elige según el uso:
 
 | Versión | Tamaño | Para qué |

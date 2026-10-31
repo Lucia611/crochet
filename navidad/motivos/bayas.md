@@ -1,5 +1,9 @@
 # Bayas (racimos de bolitas)
 
+![Racimos de bayas rojas y crudas (referencia)](../fotos/bayas.jpg)
+*Racimos de bayas rojas y crudas (referencia)*
+
+
 **Nivel:** principiante · **Tamaño:** grande ~3 cm, pequeña ~2 cm (hilo worsted, gancho 3,5 mm)
 
 Bolitas amigurumi en rojo burdeos y crudo. Se agrupan en racimos de 3-5 para la corona.

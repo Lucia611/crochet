@@ -1,5 +1,9 @@
 # Piña (piñón navideño)
 
+![Piña de crochet entre hojas (referencia)](../fotos/pina.jpg)
+*Piña de crochet entre hojas (referencia)*
+
+
 **Nivel:** intermedio · **Tamaño:** ~6 cm de alto × 4,5 cm de ancho con hilo worsted y gancho 3,5 mm
 
 Cuerpo en amigurumi con rondas alternas de bobbles escalonados que imitan las escamas.

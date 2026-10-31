@@ -1,5 +1,9 @@
 # Campana
 
+![Campanas crudas con badajo de madera (referencia)](../fotos/campana.jpg)
+*Campanas crudas con badajo de madera (referencia)*
+
+
 **Nivel:** intermedio · **Tamaño:** ~5 cm de alto × 4,5 cm de boca con hilo worsted y gancho 3,5 mm
 
 Campana crudo/marfil con costillas suaves y badajo de cuenta de madera, colgada de un cordón de cadeneta.

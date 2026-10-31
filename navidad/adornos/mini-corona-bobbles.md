@@ -1,5 +1,15 @@
 # Mini corona de bobbles con lazo (adorno de árbol)
 
+![Mini corona burdeos colgada en el árbol](../fotos/mini-corona.jpg)
+*Mini corona burdeos colgada en el árbol*
+
+![Tejiendo la corona: anillo con borde de bobbles](../fotos/mini-corona-tejiendo.jpg)
+*Tejiendo la corona: anillo con borde de bobbles*
+
+![Caja con las cuatro variantes de color](../fotos/mini-corona-caja.jpg)
+*Caja con las cuatro variantes de color*
+
+
 **Nivel:** intermedio · **Tamaño:** ~6,5 cm de diámetro con hilo worsted/chunky de algodón y gancho 4 mm · **Tiempo:** ~40 min
 
 Mini corona plana con un borde de bobbles que forman un contorno ondulado, lazo de cordel y cuenta de madera. Quedan muy bien en un cofre de 4: verde salvia, rosa palo, burdeos y crudo moteado.

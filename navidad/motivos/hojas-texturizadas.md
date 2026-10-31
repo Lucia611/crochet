@@ -1,5 +1,9 @@
 # Hojas texturizadas (capas de hoja)
 
+![Hojas texturizadas en tres verdes (referencia)](../fotos/hojas.jpg)
+*Hojas texturizadas en tres verdes (referencia)*
+
+
 **Nivel:** principiante · **Tamaño:** ~7 × 4 cm con hilo worsted y gancho 3,5 mm
 
 Hoja en forma de rombo alargado, con costillas horizontales (trabajo en BLO). Hazlas en 3 verdes distintos (bosque, oliva, claro) y superpón varias para el efecto "capas" de la corona.
