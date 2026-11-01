@@ -45,10 +45,9 @@
     font: 1.0625rem/1.6 var(--font-body);
     padding-block: 0 4rem;
   }
-  .wrap { max-width: 64rem; margin: 0 auto;
+  .wrap { max-width: 78rem; margin: 0 auto;
     padding-left: max(16px, env(safe-area-inset-left, 0px));
     padding-right: max(16px, env(safe-area-inset-right, 0px)); }
-  .read { max-width: 44rem; margin: 0 auto; }
   h1, h2, h3 { font-family: var(--font-display); line-height: 1.15; text-wrap: balance; color: var(--fg); }
   a { color: var(--pine); }
   :focus-visible { outline: 3px solid var(--gold); outline-offset: 2px; }
@@ -78,7 +77,7 @@
   .btn.ghost:hover { background: rgba(255,255,255,.1); }
   .btn.line { color: var(--pine); border-color: var(--pine); background: transparent; }
   .btn.line:hover { background: var(--chip); }
-  .mosaic { display: grid; grid-template-columns: repeat(3, 1fr); grid-auto-rows: 7rem; gap: .6rem; }
+  .mosaic { display: grid; grid-template-columns: repeat(3, 1fr); grid-auto-rows: clamp(6rem, 10vw, 9.5rem); gap: .7rem; }
   .mosaic img { width: 100%; height: 100%; object-fit: cover; border-radius: .9rem; display: block; }
   .mosaic .a { grid-column: span 2; grid-row: span 2; }
   .stats { display: flex; gap: 2rem; flex-wrap: wrap; margin-top: 2rem; padding-top: 1.25rem; border-top: 1px solid rgba(255,255,255,.18); }
@@ -129,8 +128,9 @@
   .filters button[aria-pressed="true"] { background: var(--pine); border-color: var(--pine); color: var(--bg); }
   .section-title { font-family: var(--font-display); font-size: 1.1rem; letter-spacing: .06em; text-transform: uppercase; color: var(--berry); margin: 2rem 0 .25rem; }
   .section-note { color: var(--muted); font-size: .95rem; margin: 0 0 .5rem; }
-  .list { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
-  .list li { border-bottom: 1px solid var(--line); }
+  .list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 27rem), 1fr)); column-gap: 2.5rem; }
+  .list li { border-top: 1px solid var(--line); }
+  .catalog { max-width: 100%; }
   .list a { display: grid; grid-template-columns: 4.5rem 1fr auto; gap: .15rem 1rem; align-items: baseline; padding: .8rem .25rem; text-decoration: none; color: var(--fg); min-height: 3.25rem; }
   .list a:hover, .list a:active { background: var(--chip); }
   .list .thumb { grid-row: 1 / span 2; align-self: center; width: 4.5rem; height: 4.5rem; object-fit: cover; border-radius: .6rem; background: var(--chip); }
@@ -140,7 +140,17 @@
   .list .desc { grid-column: 2 / -1; color: var(--muted); font-size: .98rem; }
   .empty { color: var(--muted); padding: 1rem 0; }
 
-  /* Lectura */
+  /* Lectura: columna de texto de ~46rem y, en pantallas anchas, índice lateral */
+  .doc-layout { display: grid; grid-template-columns: minmax(0, 46rem); justify-content: center; gap: 3rem; }
+  .toc { display: none; }
+  @media (min-width: 1040px) {
+    .doc-layout { grid-template-columns: minmax(0, 46rem) 16rem; }
+    .toc { display: block; position: sticky; top: 1rem; align-self: start; max-height: calc(100vh - 2rem); overflow: auto; padding-top: 3.4rem; }
+  }
+  .toc h2 { font: 700 .8rem var(--font-body); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin: 0 0 .6rem; }
+  .toc ul { list-style: none; margin: 0; padding: 0; border-left: 2px solid var(--line); }
+  .toc a { display: block; padding: .35rem .8rem; text-decoration: none; color: var(--fg); font-size: .95rem; line-height: 1.35; }
+  .toc a:hover { color: var(--pine); background: var(--chip); }
   .topbar { display: flex; justify-content: space-between; align-items: center; gap: .75rem; flex-wrap: wrap; margin-bottom: 1rem; }
   .back { display: inline-flex; align-items: center; min-height: 2.75rem; font-weight: 600; text-decoration: none; }
   .btn-sm { font: 600 .95rem var(--font-body); color: var(--pine); background: transparent; border: 1.5px solid var(--pine); border-radius: .5rem; padding: .55rem .9rem; min-height: 2.75rem; cursor: pointer; }
@@ -272,7 +282,7 @@ function renderCatalog(themeId) {
     });
   });
   if (!h.includes('<ul')) h += '<p class="empty">No hay patrones con ese nivel todavía.</p>';
-  app.innerHTML = `<div class="wrap">${header(themeId ? '' : 'patrones')}<div class="read">
+  app.innerHTML = `<div class="wrap">${header(themeId ? '' : 'patrones')}<div class="catalog">
     <h1 class="page-title">${themeId ? esc(themes[0].name) : 'Patrones'}</h1>
     <p class="page-lead">${themeId ? esc(themes[0].tagline) : 'Todos los patrones, agrupados por temática y tipo de pieza.'}</p>
     <div class="filters" role="group" aria-label="Filtrar por nivel">${filters}</div>${h}</div></div>`;
@@ -285,14 +295,20 @@ function renderDoc(id) {
   document.title = d.title + ' · Cuaderno de Crochet';
   const isPattern = !!patterns[id];
   const route = isPattern ? '' : id;
-  app.innerHTML = `<div class="wrap">${header(route)}<div class="read">
+  app.innerHTML = `<div class="wrap">${header(route)}<div class="doc-layout"><div class="main-col">
     <div class="topbar"><a class="back" href="${isPattern ? '#patrones' : '#'}">← ${isPattern ? 'Patrones' : 'Inicio'}</a>
     ${isPattern ? '<button class="btn-sm" id="reset" type="button">Borrar marcas</button>' : ''}</div>
     ${isPattern ? '<p class="hint">Toca una línea para marcarla como hecha. Se guarda en este dispositivo.</p>' : ''}
-    <article class="doc${isPattern ? ' tap' : ''}"></article></div></div>`;
+    <article class="doc${isPattern ? ' tap' : ''}"></article></div><aside class="toc" aria-label="En esta página"></aside></div></div>`;
   const doc = app.querySelector('.doc');
   doc.innerHTML = marked.parse(d.md, { headerIds: false, mangle: false });
   doc.querySelectorAll('h1,h2,h3,h4').forEach(h => { h.id = slug(h.textContent); });
+  const heads = [...doc.querySelectorAll('h2')];
+  const toc = app.querySelector('.toc');
+  if (heads.length >= 3) {
+    toc.innerHTML = '<h2>En esta página</h2><ul>' + heads.map(h => `<li><a href="#" data-to="${h.id}">${esc(h.textContent)}</a></li>`).join('') + '</ul>';
+    toc.addEventListener('click', e => { const a = e.target.closest('a[data-to]'); if (!a) return; e.preventDefault(); const t = document.getElementById(a.dataset.to); if (t) t.scrollIntoView(); });
+  } else { toc.remove(); }
   doc.querySelectorAll('table').forEach(t => {
     const w = document.createElement('div'); w.className = 'scroll';
     t.parentNode.insertBefore(w, t); w.appendChild(t);

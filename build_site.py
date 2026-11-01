@@ -45,7 +45,7 @@ THEMES = [{
             {'id': 'pina', 'name': 'Piña', 'level': 'Intermedio', 'size': '6 × 4,5 cm', 'desc': 'Cuerpo amigurumi con bobbles escalonados como escamas.', 'foto': 'pina.jpg'},
             {'id': 'bayas', 'name': 'Bayas', 'level': 'Principiante', 'size': '2 – 3 cm', 'desc': 'Bolitas rojas y crudas para hacer racimos.', 'foto': 'bayas.jpg'},
             {'id': 'campana', 'name': 'Campana sencilla', 'level': 'Intermedio', 'size': '5 cm', 'desc': 'Con costillas y badajo de cuenta de madera.', 'foto': 'campana.jpg'},
-            {'id': 'lazo', 'name': 'Lazo grande', 'level': 'Principiante', 'size': '18 cm', 'desc': 'Lazo verde con dos colas para la parte alta de la corona.', 'foto': 'corona-puerta-2.jpg'},
+            {'id': 'lazo', 'name': 'Lazo grande', 'level': 'Principiante', 'size': '18 cm', 'desc': 'Lazo verde con dos colas para la parte alta de la corona.', 'foto': 'corona-puerta.jpg'},
         ]},
         {'title': 'Adornos de árbol', 'note': 'Proyectos pequeños y terminados.', 'items': [
             {'id': 'mini-corona-bobbles', 'name': 'Mini corona de bobbles', 'level': 'Intermedio', 'size': '6,5 cm', 'desc': 'Con lazo de cordel y cuentas de madera.', 'foto': 'mini-corona.jpg'},
