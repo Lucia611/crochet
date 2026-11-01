@@ -6,11 +6,11 @@ Guía rápida de los puntos que usan los patrones de este cuaderno. Todo está e
 
 Los esquemas de crochet usan estos símbolos. Aparecen en muchas fotos de patrones, como el diagrama de la poinsettia.
 
-| Símbolo | Abrev. | Inglés (US) | Español de España | Otros nombres en español | Inglés UK |
+| Símbolo | Abrev. | Inglés (US) | Español (ES) | Español (LATAM) | Inglés (UK) |
 |---|---|---|---|---|---|
-| <svg class="sym" viewBox="0 0 24 32" aria-hidden="true"><ellipse cx="12" cy="16" rx="7" ry="4" fill="none" stroke="currentColor" stroke-width="1.8"/></svg> | `ch` | chain | **Cadeneta** | cadena (Latinoamérica) | chain (ch) |
+| <svg class="sym" viewBox="0 0 24 32" aria-hidden="true"><ellipse cx="12" cy="16" rx="7" ry="4" fill="none" stroke="currentColor" stroke-width="1.8"/></svg> | `ch` | chain | **Cadeneta** | cadena | chain (ch) |
 | <svg class="sym" viewBox="0 0 24 32" aria-hidden="true"><circle cx="12" cy="16" r="3.2" fill="currentColor"/></svg> | `sl st` | slip stitch | **Punto deslizado** (enano) | punto raso | slip stitch (sl st) |
-| <svg class="sym" viewBox="0 0 24 32" aria-hidden="true"><path d="M12 9v14M5 16h14" stroke="currentColor" stroke-width="1.8" fill="none"/></svg> | `sc` | single crochet | **Punto bajo** | — | double crochet (dc) |
+| <svg class="sym" viewBox="0 0 24 32" aria-hidden="true"><path d="M12 9v14M5 16h14" stroke="currentColor" stroke-width="1.8" fill="none"/></svg> | `sc` | single crochet | **Punto bajo** | punto bajo | double crochet (dc) |
 | <svg class="sym" viewBox="0 0 24 32" aria-hidden="true"><path d="M6 6h12M12 6v22" stroke="currentColor" stroke-width="1.8" fill="none"/></svg> | `hdc` | half double crochet | **Punto medio alto** | media vareta | half treble (htr) |
 | <svg class="sym" viewBox="0 0 24 32" aria-hidden="true"><path d="M6 6h12M12 6v22M8 17l8-4" stroke="currentColor" stroke-width="1.8" fill="none"/></svg> | `dc` | double crochet | **Punto alto** | vareta | treble (tr) |
 | <svg class="sym" viewBox="0 0 24 32" aria-hidden="true"><path d="M6 6h12M12 6v22M8 14l8-4M8 20l8-4" stroke="currentColor" stroke-width="1.8" fill="none"/></svg> | `tr` | treble crochet | **Punto alto doble** | vareta doble | double treble (dtr) |
