@@ -1,5 +1,17 @@
 # Campanas nórdicas (y variantes de encaje, hojas y colores joya)
 
+![Campanas nórdicas: crudo y azul, azul con poinsettia, gris con copo de nieve](../fotos/campanas-nordicas.jpg)
+*Campanas nórdicas: crudo y azul, azul con poinsettia, gris con copo de nieve*
+
+![Campana de malla azul hielo, de hojas en cascada verde salvia y de encaje almendra](../fotos/campanas-3-patrones.jpg)
+*Campana de malla azul hielo, de hojas en cascada verde salvia y de encaje almendra*
+
+![Colores joya: malla azul marino y dorado, hojas moradas y encaje gris plata](../fotos/campanas-joya.jpg)
+*Colores joya: malla azul marino y dorado, hojas moradas y encaje gris plata*
+
+![Esquema de la campana nórdica (los números del diagrama no se leen bien)](../fotos/campanas-nordicas-esquema.jpg)
+*Esquema de la campana nórdica (los números del diagrama no se leen bien)*
+
 **Nivel:** intermedio (la base) / avanzado (encaje y hojas) · **Tamaño:** ~10-11 cm de alto × 8 cm de ancho con worsted y gancho 3,5 mm; ~8 × 6,5 cm con DK y gancho 3 mm
 
 Una misma campana base en espiral y cuatro formas de decorarla, sacadas de tus fotos:
@@ -11,7 +23,7 @@ Una misma campana base en espiral y cuatro formas de decorarla, sacadas de tus f
 | [3. Campana de hojas en cascada](#3-campana-de-hojas-en-cascada) | *Sage Green Leaf Cascade Bell* y la morada | Avanzado |
 | [4. Colores y remates](#4-colores-y-remates) | las tres hojas de referencia | |
 
-> Las fotos de referencia son imágenes y no incluyen texto de patrón legible: la hoja *Nordic Winter Bells* tiene un diagrama con números ilegibles y las otras dos no traen ningún esquema. **Los recuentos de puntos son diseño mío** a partir de la forma de las campanas. No los he tejido: haz primero una campana de prueba.
+> Las fotos de referencia son imágenes y no incluyen texto de patrón legible: la hoja *Nordic Winter Bells* tiene un diagrama con números ilegibles y las otras dos no traen ningún esquema (son solo fotos). **Los recuentos de puntos son diseño mío** a partir de la forma de las campanas. No los he tejido: haz primero una campana de prueba.
 
 ## Materiales
 - Hilo de algodón worsted (o DK para una campana más pequeña): colores según la variante
