@@ -1,5 +1,7 @@
 # Campana
 
+> Campana sencilla y pequeña para la corona de puerta. Para campanas más grandes y decoradas (lazo, malla, hojas en cascada) mira las [campanas nórdicas](../adornos/campanas-nordicas.md).
+
 ![Campanas crudas con badajo de madera (referencia)](../fotos/campana.jpg)
 *Campanas crudas con badajo de madera (referencia)*
 

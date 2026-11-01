@@ -24,7 +24,7 @@ Los *motivos* son piezas pequeñas que se pueden usar solas o combinadas en proy
 
 | Temática | Patrones |
 |---|---|
-| [🎄 Navidad](navidad/README.md) | 8 patrones |
+| [🎄 Navidad](navidad/README.md) | 9 patrones |
 
 ## Cómo añadir un patrón nuevo
 

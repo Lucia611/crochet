@@ -10,10 +10,10 @@ Colección inspirada en la corona navideña de puerta (hojas, poinsettias, piña
 | Patrón | Nivel | Tamaño aprox. |
 |---|---|---|
 | [Hojas texturizadas](motivos/hojas-texturizadas.md) | Principiante | 7 × 4 cm |
-| [Poinsettia](motivos/poinsettia.md) (3D en capas, mini adorno y versión por pétalos) | Intermedio | 8 – 15 cm |
+| [Poinsettia](motivos/poinsettia.md) (3D en capas, mini de 2 capas y versión por pétalos) | Intermedio | 8 – 15 cm |
 | [Piña](motivos/pina.md) | Intermedio | 6 × 4,5 cm |
 | [Bayas](motivos/bayas.md) | Principiante | 2 – 3 cm |
-| [Campana](motivos/campana.md) | Intermedio | 5 cm de alto |
+| [Campana sencilla](motivos/campana.md) (para la corona de puerta) | Intermedio | 5 cm de alto |
 | [Lazo grande](motivos/lazo.md) | Principiante | 18 cm de ancho |
 
 ## Adornos de árbol
@@ -21,6 +21,7 @@ Colección inspirada en la corona navideña de puerta (hojas, poinsettias, piña
 | Patrón | Nivel | Tamaño aprox. |
 |---|---|---|
 | [Mini corona de bobbles con lazo](adornos/mini-corona-bobbles.md) | Intermedio | 6,5 cm |
+| [Campanas nórdicas](adornos/campanas-nordicas.md) (base, malla, hojas en cascada y colores joya) | Intermedio / avanzado | 10 × 8 cm |
 
 ## Proyectos
 
