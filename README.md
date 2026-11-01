@@ -8,6 +8,8 @@ Repositorio personal para guardar patrones de ganchillo, agrupados por temática
 crochet/
 ├── README.md              ← este índice
 ├── glosario.md            ← abreviaturas, equivalencias US/UK/ES, puntos especiales
+├── cuaderno/              ← guías: puntos, consejos y trucos, ganchos e hilos
+├── index.html             ← web del cuaderno (generada con build_site.py)
 ├── _plantilla.md          ← plantilla para añadir un patrón nuevo
 └── navidad/               ← una carpeta por temática
     ├── README.md          ← índice de la temática
@@ -36,7 +38,8 @@ Los *motivos* son piezas pequeñas que se pueden usar solas o combinadas en proy
 
 ## Web para el móvil
 
-`index.html` es una web estática (sin dependencias salvo `marked` desde cdnjs) con todos los patrones y fotos, pensada para abrir en el móvil o la tablet. Se puede instalar en la pantalla de inicio.
+`index.html` es una web estática (sin dependencias salvo `marked` desde cdnjs) con portada, temáticas, patrones y las guías del cuaderno, pensada para abrir en el móvil o la tablet. Se puede instalar en la pantalla de inicio.
 
 - **Regenerarla** tras cambiar un patrón: `python3 build_site.py` (lee los `.md`, las fotos de `navidad/fotos/` y `sitio/plantilla.html`).
+- **Añadir un patrón o una temática** a la web: edita las listas `PATTERN_FILES` y `THEMES` al principio de `build_site.py`.
 - **Desplegar:** Vercel (o GitHub Pages) sirviendo la raíz del repositorio, sin comando de build.

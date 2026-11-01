@@ -1,9 +1,10 @@
 <title>Cuaderno de Crochet</title>
 <meta name="claude:viewport-fit-sides" content="cover">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&display=swap">
 <style>
-  /* Layout: una columna de lectura (máx. 44rem); portada = lista agrupada por tipo de pieza,
-     detalle = patrón en markdown con líneas que se marcan al tocarlas. */
+  /* Layout: portada con banda verde de pino (titular + mosaico de fotos), temáticas, proyectos y
+     cuaderno de ayuda; el resto son páginas de lectura de una columna. El detalle propio del
+     tema: una cadena de puntos (símbolo de cadeneta) como separador. */
   :root {
     --bg: #f5f6f2;
     --surface: #ffffff;
@@ -15,6 +16,11 @@
     --gold: #b98a1e;
     --chip: #e6efe9;
     --done: #8a978f;
+    --hero-bg: #17392c;
+    --hero-fg: #f1f5ef;
+    --hero-muted: #b7cabe;
+    --hero-accent: #f2c14e;
+    --on-accent: #17392c;
     --font-display: "Bricolage Grotesque", "Trebuchet MS", system-ui, sans-serif;
     --font-body: "Source Sans 3", system-ui, -apple-system, "Segoe UI", sans-serif;
   }
@@ -22,52 +28,123 @@
     :root:not([data-theme="light"]) {
       --bg: #121a16; --surface: #1a251f; --fg: #e8eee9; --muted: #9fb0a5; --line: #2b3a32;
       --pine: #7fc4a3; --berry: #f0788f; --gold: #e3b954; --chip: #243a30; --done: #6c7d73;
+      --hero-bg: #0d241b; --hero-fg: #f1f5ef; --hero-muted: #9fb8aa;
       color-scheme: dark;
     }
   }
   :root[data-theme="dark"] {
     --bg: #121a16; --surface: #1a251f; --fg: #e8eee9; --muted: #9fb0a5; --line: #2b3a32;
     --pine: #7fc4a3; --berry: #f0788f; --gold: #e3b954; --chip: #243a30; --done: #6c7d73;
+    --hero-bg: #0d241b; --hero-fg: #f1f5ef; --hero-muted: #9fb8aa;
     color-scheme: dark;
   }
   * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
   body {
     background: var(--bg); color: var(--fg);
     font: 1.0625rem/1.6 var(--font-body);
-    padding-block: 1.25rem 4rem;
-    padding-left: max(16px, env(safe-area-inset-left, 0px));
-    padding-right: max(16px, env(safe-area-inset-right, 0px));
+    padding-block: 0 4rem;
   }
-  .wrap { max-width: 44rem; margin: 0 auto; }
+  .wrap { max-width: 64rem; margin: 0 auto;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+  .read { max-width: 44rem; margin: 0 auto; }
   h1, h2, h3 { font-family: var(--font-display); line-height: 1.15; text-wrap: balance; color: var(--fg); }
   a { color: var(--pine); }
   :focus-visible { outline: 3px solid var(--gold); outline-offset: 2px; }
+  img { max-width: 100%; }
+
+  /* Cabecera */
+  .site { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding-block: .9rem; flex-wrap: wrap; }
+  .site .brand { font: 800 1.2rem var(--font-display); color: var(--pine); text-decoration: none; min-height: 2.75rem; display: inline-flex; align-items: center; }
+  .site nav { display: flex; gap: .25rem; flex-wrap: wrap; }
+  .site nav a { padding: .55rem .8rem; border-radius: 99px; text-decoration: none; color: var(--fg); font-weight: 600; font-size: .98rem; min-height: 2.75rem; display: inline-flex; align-items: center; }
+  .site nav a:hover { background: var(--chip); }
+  .site nav a[aria-current="page"] { background: var(--chip); color: var(--pine); }
 
   /* Portada */
-  .brand { margin: 1rem 0 2rem; }
-  .brand h1 { font-size: clamp(2rem, 8vw, 3rem); margin: 0 0 .4rem; color: var(--pine); }
-  .brand p { margin: 0; color: var(--muted); }
+  .hero { background: var(--hero-bg); color: var(--hero-fg); padding-block: 0 3rem; }
+  .hero .site .brand, .hero .site nav a { color: var(--hero-fg); }
+  .hero .site nav a:hover { background: rgba(255,255,255,.12); }
+  .hero-grid { display: grid; grid-template-columns: 1.05fr 1fr; gap: 2.5rem; align-items: center; padding-top: 1.5rem; }
+  .hero h1 { color: var(--hero-fg); font-size: clamp(2.4rem, 8vw, 4.2rem); font-weight: 800; margin: 0 0 1rem; letter-spacing: -.02em; }
+  .hero h1 em { font-style: normal; color: var(--hero-accent); }
+  .hero p { color: var(--hero-muted); font-size: 1.15rem; max-width: 30rem; margin: 0 0 1.5rem; }
+  .cta { display: flex; gap: .75rem; flex-wrap: wrap; }
+  .btn { font: 700 1rem var(--font-body); text-decoration: none; padding: .8rem 1.25rem; border-radius: .6rem; min-height: 2.75rem; display: inline-flex; align-items: center; cursor: pointer; border: 2px solid transparent; }
+  .btn.primary { background: var(--hero-accent); color: var(--on-accent); }
+  .btn.primary:hover { filter: brightness(1.08); }
+  .btn.ghost { color: var(--hero-fg); border-color: rgba(255,255,255,.4); background: transparent; }
+  .btn.ghost:hover { background: rgba(255,255,255,.1); }
+  .btn.line { color: var(--pine); border-color: var(--pine); background: transparent; }
+  .btn.line:hover { background: var(--chip); }
+  .mosaic { display: grid; grid-template-columns: repeat(3, 1fr); grid-auto-rows: 7rem; gap: .6rem; }
+  .mosaic img { width: 100%; height: 100%; object-fit: cover; border-radius: .9rem; display: block; }
+  .mosaic .a { grid-column: span 2; grid-row: span 2; }
+  .stats { display: flex; gap: 2rem; flex-wrap: wrap; margin-top: 2rem; padding-top: 1.25rem; border-top: 1px solid rgba(255,255,255,.18); }
+  .stats div { font-size: .95rem; color: var(--hero-muted); }
+  .stats b { display: block; font: 800 1.9rem var(--font-display); color: var(--hero-fg); line-height: 1.1; }
+
+  /* Secciones de la portada */
+  .section { padding-top: 3.25rem; }
+  .section > h2 { font-size: clamp(1.6rem, 5vw, 2.2rem); margin: 0 0 .35rem; color: var(--fg); }
+  .section > p.lead { color: var(--muted); margin: 0 0 1.5rem; max-width: 40rem; }
+  .chain { height: 14px; margin: 0 0 1.25rem; background: var(--line); -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='26' height='14' viewBox='0 0 26 14'%3E%3Cellipse cx='13' cy='7' rx='9' ry='4.5' fill='none' stroke='black' stroke-width='2'/%3E%3C/svg%3E") repeat-x; mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='26' height='14' viewBox='0 0 26 14'%3E%3Cellipse cx='13' cy='7' rx='9' ry='4.5' fill='none' stroke='black' stroke-width='2'/%3E%3C/svg%3E") repeat-x; }
+  .themes { display: grid; grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr)); gap: 1.1rem; }
+  .theme { display: flex; flex-direction: column; text-decoration: none; color: var(--fg); background: var(--surface); border: 1px solid var(--line); border-radius: 1rem; overflow: hidden; }
+  .theme:hover { border-color: var(--pine); }
+  .theme img { width: 100%; height: 11rem; object-fit: cover; display: block; }
+  .theme .body { padding: 1rem 1.1rem 1.2rem; display: grid; gap: .3rem; }
+  .theme h3 { margin: 0; font-size: 1.5rem; }
+  .theme p { margin: 0; color: var(--muted); font-size: .98rem; }
+  .theme .count { font-weight: 700; color: var(--berry); font-size: .9rem; letter-spacing: .02em; }
+  .theme.soon { border-style: dashed; background: transparent; justify-content: center; min-height: 14rem; }
+  .theme.soon .body { padding: 1.5rem; text-align: center; }
+  .theme.soon h3 { color: var(--muted); font-size: 1.2rem; }
+
+  .projects { display: grid; grid-template-columns: repeat(auto-fit, minmax(10.5rem, 1fr)); gap: 1.1rem; }
+  .card { display: flex; flex-direction: column; text-decoration: none; color: var(--fg); }
+  .card img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: .9rem; display: block; background: var(--chip); }
+  .card h3 { margin: .7rem 0 .2rem; font-size: 1.2rem; }
+  .card p { margin: 0; color: var(--muted); font-size: .95rem; }
+  .card:hover h3 { color: var(--pine); text-decoration: underline; text-underline-offset: 3px; }
+  .meta { display: flex; gap: .5rem; align-items: center; margin-top: .45rem; flex-wrap: wrap; }
+  .chip { display: inline-block; font: 600 .78rem/1 var(--font-body); background: var(--chip); color: var(--pine); border-radius: 99px; padding: .3rem .6rem; }
+  .size { color: var(--muted); font-size: .9rem; }
+
+  .guides { display: grid; grid-template-columns: repeat(auto-fit, minmax(12.5rem, 1fr)); gap: 1.1rem; }
+  .guide { display: block; text-decoration: none; color: var(--fg); background: var(--surface); border: 1px solid var(--line); border-radius: 1rem; padding: 1.2rem; }
+  .guide:hover { border-color: var(--pine); }
+  .guide .sym-row { display: flex; gap: .6rem; color: var(--berry); margin-bottom: .6rem; min-height: 2rem; align-items: center; }
+  .guide .sym { width: 1.4rem; height: 1.9rem; }
+  .guide h3 { margin: 0 0 .3rem; font-size: 1.25rem; }
+  .guide p { margin: 0; color: var(--muted); font-size: .97rem; }
+  .footer { margin-top: 3.5rem; padding-top: 1.5rem; border-top: 1px solid var(--line); color: var(--muted); font-size: .92rem; }
+
+  /* Catálogo */
+  .page-title { font-size: clamp(2rem, 7vw, 2.8rem); color: var(--pine); margin: 1.25rem 0 .4rem; }
+  .page-lead { color: var(--muted); margin: 0 0 1.25rem; }
+  .filters { display: flex; gap: .5rem; flex-wrap: wrap; margin: 0 0 1.25rem; }
+  .filters button { font: 600 .95rem var(--font-body); border: 1.5px solid var(--line); background: var(--surface); color: var(--fg); border-radius: 99px; padding: .5rem .95rem; min-height: 2.75rem; cursor: pointer; }
+  .filters button[aria-pressed="true"] { background: var(--pine); border-color: var(--pine); color: var(--bg); }
   .section-title { font-family: var(--font-display); font-size: 1.1rem; letter-spacing: .06em; text-transform: uppercase; color: var(--berry); margin: 2rem 0 .25rem; }
   .section-note { color: var(--muted); font-size: .95rem; margin: 0 0 .5rem; }
   .list { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
   .list li { border-bottom: 1px solid var(--line); }
-  .list a {
-    display: grid; grid-template-columns: 4.5rem 1fr auto; gap: .15rem 1rem; align-items: baseline;
-    padding: .8rem .25rem; text-decoration: none; color: var(--fg); min-height: 3.25rem;
-  }
+  .list a { display: grid; grid-template-columns: 4.5rem 1fr auto; gap: .15rem 1rem; align-items: baseline; padding: .8rem .25rem; text-decoration: none; color: var(--fg); min-height: 3.25rem; }
   .list a:hover, .list a:active { background: var(--chip); }
-  .list .name { font-family: var(--font-display); font-weight: 700; font-size: 1.15rem; }
-  .list .size { color: var(--muted); font-size: .95rem; text-align: right; white-space: nowrap; }
   .list .thumb { grid-row: 1 / span 2; align-self: center; width: 4.5rem; height: 4.5rem; object-fit: cover; border-radius: .6rem; background: var(--chip); }
+  .list .name { font-family: var(--font-display); font-weight: 700; font-size: 1.15rem; }
+  .list .name .chip { margin-left: .5rem; vertical-align: .12em; }
+  .list .size { text-align: right; white-space: nowrap; }
   .list .desc { grid-column: 2 / -1; color: var(--muted); font-size: .98rem; }
-  .chip { display: inline-block; font: 600 .78rem/1 var(--font-body); background: var(--chip); color: var(--pine); border-radius: 99px; padding: .28rem .6rem; margin-left: .5rem; vertical-align: .12em; }
-  .extra { margin-top: 2.25rem; }
+  .empty { color: var(--muted); padding: 1rem 0; }
 
-  /* Detalle */
+  /* Lectura */
   .topbar { display: flex; justify-content: space-between; align-items: center; gap: .75rem; flex-wrap: wrap; margin-bottom: 1rem; }
   .back { display: inline-flex; align-items: center; min-height: 2.75rem; font-weight: 600; text-decoration: none; }
-  .btn { font: 600 .95rem var(--font-body); color: var(--pine); background: transparent; border: 1.5px solid var(--pine); border-radius: .5rem; padding: .55rem .9rem; min-height: 2.75rem; cursor: pointer; }
-  .btn:hover { background: var(--chip); }
+  .btn-sm { font: 600 .95rem var(--font-body); color: var(--pine); background: transparent; border: 1.5px solid var(--pine); border-radius: .5rem; padding: .55rem .9rem; min-height: 2.75rem; cursor: pointer; }
+  .btn-sm:hover { background: var(--chip); }
   .hint { color: var(--muted); font-size: .92rem; margin: 0 0 1.25rem; }
   .doc h1 { font-size: clamp(1.8rem, 7vw, 2.5rem); color: var(--pine); margin: .25rem 0 .75rem; }
   .doc h2 { font-size: 1.45rem; margin: 2.25rem 0 .6rem; padding-top: .9rem; border-top: 1px solid var(--line); }
@@ -76,8 +153,9 @@
   .doc img { display: block; width: 100%; height: auto; border-radius: .6rem; margin: 1rem 0 .2rem; }
   .doc p > em:only-child { display: block; color: var(--muted); font-size: .9rem; margin-bottom: 1rem; }
   .doc ul, .doc ol { padding-left: 1.2rem; margin: .5rem 0 1rem; }
-  .doc li { margin: .15rem 0; padding: .3rem .4rem; border-radius: .4rem; cursor: pointer; -webkit-tap-highlight-color: transparent; }
-  .doc li:hover { background: var(--chip); }
+  .doc li { margin: .15rem 0; padding: .3rem .4rem; border-radius: .4rem; }
+  .doc.tap li { cursor: pointer; -webkit-tap-highlight-color: transparent; }
+  .doc.tap li:hover { background: var(--chip); }
   .doc li.done { color: var(--done); text-decoration: line-through; text-decoration-thickness: 1.5px; }
   .doc code { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; font-size: .9em; background: var(--chip); padding: .1em .35em; border-radius: .3rem; overflow-wrap: anywhere; }
   .doc blockquote { margin: 1rem 0; padding: .6rem 1rem; border-left: 4px solid var(--gold); background: var(--surface); border-radius: 0 .5rem .5rem 0; }
@@ -88,67 +166,132 @@
   .doc th, .doc td { text-align: left; padding: .55rem .75rem; border-bottom: 1px solid var(--line); vertical-align: top; }
   .doc th { font-family: var(--font-display); font-size: .85rem; letter-spacing: .04em; text-transform: uppercase; color: var(--muted); }
   .doc tr:last-child td { border-bottom: 0; }
-  @media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+  .doc .sym { width: 1.5rem; height: 2rem; color: var(--berry); display: block; }
+
+  @media (max-width: 760px) {
+    .hero-grid { grid-template-columns: 1fr; gap: 1.75rem; }
+    .mosaic { grid-auto-rows: 6rem; }
+    .section { padding-top: 2.5rem; }
+  }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 </style>
 
-<div class="wrap" id="app"></div>
+<div id="app"></div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/4.3.0/marked.min.js"></script>
 <script>
-const DOCS = __DOCS__;
-const GROUPS = __GROUPS__;
+const DATA = __DATA__;
 const app = document.getElementById('app');
 const pathToId = {};
-Object.keys(DOCS).forEach(id => { pathToId[DOCS[id].path] = id; });
+Object.keys(DATA.docs).forEach(id => { pathToId[DATA.docs[id].path] = id; });
+const patterns = {};
+DATA.themes.forEach(t => t.groups.forEach(g => g.items.forEach(it => { patterns[it.id] = Object.assign({ theme: t.name }, it); })));
 let pendingAnchor = null;
+let levelFilter = '';
 
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
 const slug = t => t.toLowerCase().trim().replace(/[^\p{L}\p{N}\s-]/gu, '').replace(/\s+/g, '-');
 const store = {
   get(k) { try { return JSON.parse(localStorage.getItem(k) || '[]'); } catch (e) { return []; } },
   set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} }
 };
-
 function resolvePath(base, href) {
   const parts = base.split('/').slice(0, -1);
-  href.split('/').forEach(seg => {
-    if (seg === '..') parts.pop(); else if (seg && seg !== '.') parts.push(seg);
-  });
+  href.split('/').forEach(seg => { if (seg === '..') parts.pop(); else if (seg && seg !== '.') parts.push(seg); });
   return parts.join('/');
 }
+const total = DATA.themes.reduce((n, t) => n + t.groups.reduce((m, g) => m + g.items.length, 0), 0);
 
-function el(html) { const t = document.createElement('template'); t.innerHTML = html.trim(); return t.content.firstChild; }
-const esc = s => s.replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+function header(route, onHero) {
+  const cur = r => (route === r ? ' aria-current="page"' : '');
+  return `<header class="site"><a class="brand" href="#">Cuaderno de crochet</a>
+    <nav aria-label="Principal"><a href="#patrones"${cur('patrones')}>Patrones</a><a href="#puntos"${cur('puntos')}>Puntos</a><a href="#consejos"${cur('consejos')}>Consejos</a><a href="#ganchos-e-hilos"${cur('ganchos-e-hilos')}>Materiales</a></nav></header>`;
+}
 
-function renderHome() {
+const SYMS = [
+  '<svg class="sym" viewBox="0 0 24 32" aria-hidden="true"><ellipse cx="12" cy="16" rx="7" ry="4" fill="none" stroke="currentColor" stroke-width="1.8"/></svg>',
+  '<svg class="sym" viewBox="0 0 24 32" aria-hidden="true"><circle cx="12" cy="16" r="3.2" fill="currentColor"/></svg>',
+  '<svg class="sym" viewBox="0 0 24 32" aria-hidden="true"><path d="M12 9v14M5 16h14" stroke="currentColor" stroke-width="1.8" fill="none"/></svg>',
+  '<svg class="sym" viewBox="0 0 24 32" aria-hidden="true"><path d="M6 6h12M12 6v22" stroke="currentColor" stroke-width="1.8" fill="none"/></svg>',
+  '<svg class="sym" viewBox="0 0 24 32" aria-hidden="true"><path d="M6 6h12M12 6v22M8 17l8-4" stroke="currentColor" stroke-width="1.8" fill="none"/></svg>',
+  '<svg class="sym" viewBox="0 0 24 32" aria-hidden="true"><path d="M6 6h12M12 6v22M8 14l8-4M8 20l8-4" stroke="currentColor" stroke-width="1.8" fill="none"/></svg>'
+];
+
+function projectCard(id) {
+  const p = patterns[id];
+  return `<a class="card" href="#${id}"><img src="${p.cover}" alt="" loading="lazy">
+    <h3>${esc(p.name)}</h3><p>${esc(p.desc)}</p>
+    <div class="meta"><span class="chip">${esc(p.level)}</span><span class="size">${esc(p.size)}</span></div></a>`;
+}
+
+function renderLanding() {
   document.title = 'Cuaderno de Crochet';
-  let h = `<header class="brand"><h1>Cuaderno de crochet</h1>
-    <p>Navidad · ${GROUPS.reduce((n, g) => n + g.items.length, 0)} patrones. Toca uno para abrirlo.</p></header>`;
-  GROUPS.forEach(g => {
-    h += `<h2 class="section-title">${esc(g.title)}</h2><p class="section-note">${esc(g.note)}</p><ul class="list">`;
-    g.items.forEach(it => {
-      h += `<li><a href="#${it.id}"><img class="thumb" src="${it.img}" alt=""><span class="name">${esc(it.name)}<span class="chip">${esc(it.level)}</span></span>
-        <span class="size">${esc(it.size)}</span><span class="desc">${esc(it.desc)}</span></a></li>`;
+  const mos = DATA.mosaic.map((m, i) => `<img class="${'abcde'[i] || ''}" src="${m}" alt="" ${i ? 'loading="lazy"' : ''}>`).join('');
+  const themes = DATA.themes.map(t => {
+    const n = t.groups.reduce((m, g) => m + g.items.length, 0);
+    return `<a class="theme" href="#${t.id}"><img src="${t.cover}" alt="" loading="lazy"><div class="body">
+      <span class="count">${n} patrones</span><h3>${esc(t.name)}</h3><p>${esc(t.tagline)}</p></div></a>`;
+  }).join('') + `<div class="theme soon"><div class="body"><h3>La próxima temática</h3><p>Aquí irá la siguiente colección de patrones.</p></div></div>`;
+  const guides = DATA.guides.map((g, i) => `<a class="guide" href="#${g.id}"><div class="sym-row">${g.syms.map(k => SYMS[k]).join('')}</div>
+    <h3>${esc(g.name)}</h3><p>${esc(g.desc)}</p></a>`).join('');
+  app.innerHTML = `
+  <div class="band hero"><div class="wrap">${header('', true)}
+    <div class="hero-grid"><div>
+      <h1>Cuaderno de <em>crochet</em></h1>
+      <p>Patrones, puntos y trucos para tejer a tu ritmo, con cada pieza explicada ronda a ronda.</p>
+      <div class="cta"><a class="btn primary" href="#patrones">Ver los patrones</a><a class="btn ghost" href="#puntos">Aprender los puntos</a></div>
+      <div class="stats"><div><b>${total}</b>patrones</div><div><b>${DATA.themes.length}</b>temática</div><div><b>${DATA.guides.length}</b>guías del cuaderno</div></div>
+    </div><div class="mosaic">${mos}</div></div></div></div>
+  <div class="wrap">
+    <section class="section"><h2>Temáticas</h2><div class="chain" aria-hidden="true"></div><p class="lead">Cada colección agrupa sus motivos, adornos y proyectos.</p><div class="themes">${themes}</div></section>
+    <section class="section"><h2>Proyectos para tejer</h2><div class="chain" aria-hidden="true"></div><p class="lead">Lo más vistoso de la colección, para empezar por algo con resultado.</p><div class="projects">${DATA.featured.map(projectCard).join('')}</div></section>
+    <section class="section"><h2>El cuaderno</h2><div class="chain" aria-hidden="true"></div><p class="lead">Lo que necesitas saber para tejer cualquier patrón de aquí.</p><div class="guides">${guides}</div></section>
+    <footer class="footer">Los patrones son diseños propios a partir de fotos de referencia. Haz siempre una muestra antes de empezar.</footer>
+  </div>`;
+  window.scrollTo(0, 0);
+}
+
+function listHtml(items) {
+  return '<ul class="list">' + items.map(it => `<li><a href="#${it.id}"><img class="thumb" src="${it.thumb}" alt="">
+    <span class="name">${esc(it.name)}<span class="chip">${esc(it.level)}</span></span><span class="size">${esc(it.size)}</span>
+    <span class="desc">${esc(it.desc)}</span></a></li>`).join('') + '</ul>';
+}
+
+function renderCatalog(themeId) {
+  const themes = themeId ? DATA.themes.filter(t => t.id === themeId) : DATA.themes;
+  document.title = themeId ? themes[0].name + ' · Cuaderno de Crochet' : 'Patrones · Cuaderno de Crochet';
+  const levels = ['Principiante', 'Intermedio', 'Avanzado'];
+  const filters = ['Todos'].concat(levels).map(l => `<button type="button" data-level="${l === 'Todos' ? '' : l}" aria-pressed="${(l === 'Todos' ? '' : l) === levelFilter}">${l}</button>`).join('');
+  let h = '';
+  themes.forEach(t => {
+    if (!themeId) h += `<h2 class="page-title" style="font-size:1.6rem;margin-top:2rem">${esc(t.name)}</h2>`;
+    t.groups.forEach(g => {
+      const items = g.items.filter(it => !levelFilter || it.level.startsWith(levelFilter) || it.level.includes(levelFilter));
+      if (!items.length) return;
+      h += `<h3 class="section-title">${esc(g.title)}</h3><p class="section-note">${esc(g.note)}</p>${listHtml(items)}`;
     });
-    h += '</ul>';
   });
-  h += `<div class="extra"><h2 class="section-title">Ayuda</h2><ul class="list"><li><a href="#glosario"><span class="thumb"></span>
-    <span class="name">Glosario</span><span class="size">abreviaturas</span>
-    <span class="desc">Puntos, equivalencias US/UK/ES y puntos especiales como el bobble.</span></a></li></ul></div>`;
-  app.innerHTML = h;
+  if (!h.includes('<ul')) h += '<p class="empty">No hay patrones con ese nivel todavía.</p>';
+  app.innerHTML = `<div class="wrap">${header(themeId ? '' : 'patrones')}<div class="read">
+    <h1 class="page-title">${themeId ? esc(themes[0].name) : 'Patrones'}</h1>
+    <p class="page-lead">${themeId ? esc(themes[0].tagline) : 'Todos los patrones, agrupados por temática y tipo de pieza.'}</p>
+    <div class="filters" role="group" aria-label="Filtrar por nivel">${filters}</div>${h}</div></div>`;
+  app.querySelectorAll('.filters button').forEach(b => b.addEventListener('click', () => { levelFilter = b.dataset.level; renderCatalog(themeId); }));
   window.scrollTo(0, 0);
 }
 
 function renderDoc(id) {
-  const d = DOCS[id];
-  document.title = d.title;
-  const isPattern = id !== 'glosario';
-  app.innerHTML = `<div class="topbar"><a class="back" href="#">← Todos los patrones</a>
-    ${isPattern ? '<button class="btn" id="reset" type="button">Borrar marcas</button>' : ''}</div>
+  const d = DATA.docs[id];
+  document.title = d.title + ' · Cuaderno de Crochet';
+  const isPattern = !!patterns[id];
+  const route = isPattern ? '' : id;
+  app.innerHTML = `<div class="wrap">${header(route)}<div class="read">
+    <div class="topbar"><a class="back" href="${isPattern ? '#patrones' : '#'}">← ${isPattern ? 'Patrones' : 'Inicio'}</a>
+    ${isPattern ? '<button class="btn-sm" id="reset" type="button">Borrar marcas</button>' : ''}</div>
     ${isPattern ? '<p class="hint">Toca una línea para marcarla como hecha. Se guarda en este dispositivo.</p>' : ''}
-    <article class="doc"></article>`;
+    <article class="doc${isPattern ? ' tap' : ''}"></article></div></div>`;
   const doc = app.querySelector('.doc');
   doc.innerHTML = marked.parse(d.md, { headerIds: false, mangle: false });
-
   doc.querySelectorAll('h1,h2,h3,h4').forEach(h => { h.id = slug(h.textContent); });
   doc.querySelectorAll('table').forEach(t => {
     const w = document.createElement('div'); w.className = 'scroll';
@@ -157,7 +300,7 @@ function renderDoc(id) {
   doc.querySelectorAll('a[href]').forEach(a => {
     const href = a.getAttribute('href');
     if (/^https?:/.test(href)) { a.target = '_blank'; a.rel = 'noopener'; return; }
-    const [p, anchor] = href.split('#');
+    const parts = href.split('#'); const p = parts[0]; const anchor = parts[1];
     if (!p) { a.setAttribute('href', '#'); a.dataset.anchor = anchor || ''; return; }
     const target = pathToId[resolvePath(d.path, p)];
     if (target) { a.setAttribute('href', '#' + target); if (anchor) a.dataset.anchor = anchor; }
@@ -166,15 +309,15 @@ function renderDoc(id) {
     const a = e.target.closest('a');
     if (a && a.dataset.anchor !== undefined) {
       const dest = a.getAttribute('href').slice(1);
-      if (dest && dest !== id) { e.preventDefault(); pendingAnchor = a.dataset.anchor; location.hash = dest; return; }
       e.preventDefault();
+      if (dest && dest !== id) { pendingAnchor = a.dataset.anchor; location.hash = dest; return; }
       const t = document.getElementById(a.dataset.anchor);
       if (t) t.scrollIntoView();
       return;
     }
-    if (a) return;
+    if (a || !isPattern) return;
     const li = e.target.closest('li');
-    if (!li || !isPattern) return;
+    if (!li) return;
     li.classList.toggle('done');
     const all = [...doc.querySelectorAll('li')];
     store.set('done:' + id, all.map((x, i) => x.classList.contains('done') ? i : -1).filter(i => i >= 0));
@@ -182,20 +325,18 @@ function renderDoc(id) {
   if (isPattern) {
     const all = [...doc.querySelectorAll('li')];
     store.get('done:' + id).forEach(i => all[i] && all[i].classList.add('done'));
-    document.getElementById('reset').addEventListener('click', () => {
-      all.forEach(x => x.classList.remove('done')); store.set('done:' + id, []);
-    });
+    document.getElementById('reset').addEventListener('click', () => { all.forEach(x => x.classList.remove('done')); store.set('done:' + id, []); });
   }
   window.scrollTo(0, 0);
-  if (pendingAnchor) {
-    const t = document.getElementById(pendingAnchor); pendingAnchor = null;
-    if (t) t.scrollIntoView();
-  }
+  if (pendingAnchor) { const t = document.getElementById(pendingAnchor); pendingAnchor = null; if (t) t.scrollIntoView(); }
 }
 
 function route() {
   const id = decodeURIComponent(location.hash.replace(/^#/, ''));
-  if (id && DOCS[id]) renderDoc(id); else renderHome();
+  if (id === 'patrones') renderCatalog('');
+  else if (DATA.themes.some(t => t.id === id)) renderCatalog(id);
+  else if (id && DATA.docs[id]) renderDoc(id);
+  else renderLanding();
 }
 window.addEventListener('hashchange', route);
 route();
