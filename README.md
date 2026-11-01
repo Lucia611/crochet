@@ -33,3 +33,10 @@ Los *motivos* son piezas pequeñas que se pueden usar solas o combinadas en proy
 3. Si un patrón usa un punto nuevo, descríbelo en `glosario.md`.
 
 > Si quieres guardar fotos de referencia, crea una carpeta `fotos/` dentro de la temática y enlázalas desde el patrón.
+
+## Web para el móvil
+
+`index.html` es una web estática (sin dependencias salvo `marked` desde cdnjs) con todos los patrones y fotos, pensada para abrir en el móvil o la tablet. Se puede instalar en la pantalla de inicio.
+
+- **Regenerarla** tras cambiar un patrón: `python3 build_site.py` (lee los `.md`, las fotos de `navidad/fotos/` y `sitio/plantilla.html`).
+- **Desplegar:** Vercel (o GitHub Pages) sirviendo la raíz del repositorio, sin comando de build.

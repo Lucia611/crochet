@@ -1,0 +1,202 @@
+<title>Cuaderno de Crochet</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&display=swap">
+<style>
+  /* Layout: una columna de lectura (máx. 44rem); portada = lista agrupada por tipo de pieza,
+     detalle = patrón en markdown con líneas que se marcan al tocarlas. */
+  :root {
+    --bg: #f5f6f2;
+    --surface: #ffffff;
+    --fg: #1d2a24;
+    --muted: #5d6b63;
+    --line: #dde3dc;
+    --pine: #1f4d3b;
+    --berry: #a3203d;
+    --gold: #b98a1e;
+    --chip: #e6efe9;
+    --done: #8a978f;
+    --font-display: "Bricolage Grotesque", "Trebuchet MS", system-ui, sans-serif;
+    --font-body: "Source Sans 3", system-ui, -apple-system, "Segoe UI", sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #121a16; --surface: #1a251f; --fg: #e8eee9; --muted: #9fb0a5; --line: #2b3a32;
+      --pine: #7fc4a3; --berry: #f0788f; --gold: #e3b954; --chip: #243a30; --done: #6c7d73;
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #121a16; --surface: #1a251f; --fg: #e8eee9; --muted: #9fb0a5; --line: #2b3a32;
+    --pine: #7fc4a3; --berry: #f0788f; --gold: #e3b954; --chip: #243a30; --done: #6c7d73;
+    color-scheme: dark;
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg); color: var(--fg);
+    font: 1.0625rem/1.6 var(--font-body);
+    padding-block: 1.25rem 4rem;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+  }
+  .wrap { max-width: 44rem; margin: 0 auto; }
+  h1, h2, h3 { font-family: var(--font-display); line-height: 1.15; text-wrap: balance; color: var(--fg); }
+  a { color: var(--pine); }
+  :focus-visible { outline: 3px solid var(--gold); outline-offset: 2px; }
+
+  /* Portada */
+  .brand { margin: 1rem 0 2rem; }
+  .brand h1 { font-size: clamp(2rem, 8vw, 3rem); margin: 0 0 .4rem; color: var(--pine); }
+  .brand p { margin: 0; color: var(--muted); }
+  .section-title { font-family: var(--font-display); font-size: 1.1rem; letter-spacing: .06em; text-transform: uppercase; color: var(--berry); margin: 2rem 0 .25rem; }
+  .section-note { color: var(--muted); font-size: .95rem; margin: 0 0 .5rem; }
+  .list { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
+  .list li { border-bottom: 1px solid var(--line); }
+  .list a {
+    display: grid; grid-template-columns: 4.5rem 1fr auto; gap: .15rem 1rem; align-items: baseline;
+    padding: .8rem .25rem; text-decoration: none; color: var(--fg); min-height: 3.25rem;
+  }
+  .list a:hover, .list a:active { background: var(--chip); }
+  .list .name { font-family: var(--font-display); font-weight: 700; font-size: 1.15rem; }
+  .list .size { color: var(--muted); font-size: .95rem; text-align: right; white-space: nowrap; }
+  .list .thumb { grid-row: 1 / span 2; align-self: center; width: 4.5rem; height: 4.5rem; object-fit: cover; border-radius: .6rem; background: var(--chip); }
+  .list .desc { grid-column: 2 / -1; color: var(--muted); font-size: .98rem; }
+  .chip { display: inline-block; font: 600 .78rem/1 var(--font-body); background: var(--chip); color: var(--pine); border-radius: 99px; padding: .28rem .6rem; margin-left: .5rem; vertical-align: .12em; }
+  .extra { margin-top: 2.25rem; }
+
+  /* Detalle */
+  .topbar { display: flex; justify-content: space-between; align-items: center; gap: .75rem; flex-wrap: wrap; margin-bottom: 1rem; }
+  .back { display: inline-flex; align-items: center; min-height: 2.75rem; font-weight: 600; text-decoration: none; }
+  .btn { font: 600 .95rem var(--font-body); color: var(--pine); background: transparent; border: 1.5px solid var(--pine); border-radius: .5rem; padding: .55rem .9rem; min-height: 2.75rem; cursor: pointer; }
+  .btn:hover { background: var(--chip); }
+  .hint { color: var(--muted); font-size: .92rem; margin: 0 0 1.25rem; }
+  .doc h1 { font-size: clamp(1.8rem, 7vw, 2.5rem); color: var(--pine); margin: .25rem 0 .75rem; }
+  .doc h2 { font-size: 1.45rem; margin: 2.25rem 0 .6rem; padding-top: .9rem; border-top: 1px solid var(--line); }
+  .doc h3 { font-size: 1.15rem; margin: 1.6rem 0 .4rem; color: var(--berry); }
+  .doc p { margin: .7rem 0; }
+  .doc img { display: block; width: 100%; height: auto; border-radius: .6rem; margin: 1rem 0 .2rem; }
+  .doc p > em:only-child { display: block; color: var(--muted); font-size: .9rem; margin-bottom: 1rem; }
+  .doc ul, .doc ol { padding-left: 1.2rem; margin: .5rem 0 1rem; }
+  .doc li { margin: .15rem 0; padding: .3rem .4rem; border-radius: .4rem; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+  .doc li:hover { background: var(--chip); }
+  .doc li.done { color: var(--done); text-decoration: line-through; text-decoration-thickness: 1.5px; }
+  .doc code { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; font-size: .9em; background: var(--chip); padding: .1em .35em; border-radius: .3rem; overflow-wrap: anywhere; }
+  .doc blockquote { margin: 1rem 0; padding: .6rem 1rem; border-left: 4px solid var(--gold); background: var(--surface); border-radius: 0 .5rem .5rem 0; }
+  .doc blockquote p { margin: .3rem 0; }
+  .doc hr { border: 0; border-top: 1px solid var(--line); margin: 2rem 0; }
+  .scroll { overflow-x: auto; margin: 1rem 0; border: 1px solid var(--line); border-radius: .5rem; background: var(--surface); }
+  .doc table { border-collapse: collapse; width: 100%; font-size: .96rem; }
+  .doc th, .doc td { text-align: left; padding: .55rem .75rem; border-bottom: 1px solid var(--line); vertical-align: top; }
+  .doc th { font-family: var(--font-display); font-size: .85rem; letter-spacing: .04em; text-transform: uppercase; color: var(--muted); }
+  .doc tr:last-child td { border-bottom: 0; }
+  @media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+</style>
+
+<div class="wrap" id="app"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/marked/4.3.0/marked.min.js"></script>
+<script>
+const DOCS = __DOCS__;
+const GROUPS = __GROUPS__;
+const app = document.getElementById('app');
+const pathToId = {};
+Object.keys(DOCS).forEach(id => { pathToId[DOCS[id].path] = id; });
+let pendingAnchor = null;
+
+const slug = t => t.toLowerCase().trim().replace(/[^\p{L}\p{N}\s-]/gu, '').replace(/\s+/g, '-');
+const store = {
+  get(k) { try { return JSON.parse(localStorage.getItem(k) || '[]'); } catch (e) { return []; } },
+  set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} }
+};
+
+function resolvePath(base, href) {
+  const parts = base.split('/').slice(0, -1);
+  href.split('/').forEach(seg => {
+    if (seg === '..') parts.pop(); else if (seg && seg !== '.') parts.push(seg);
+  });
+  return parts.join('/');
+}
+
+function el(html) { const t = document.createElement('template'); t.innerHTML = html.trim(); return t.content.firstChild; }
+const esc = s => s.replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+
+function renderHome() {
+  document.title = 'Cuaderno de Crochet';
+  let h = `<header class="brand"><h1>Cuaderno de crochet</h1>
+    <p>Navidad · ${GROUPS.reduce((n, g) => n + g.items.length, 0)} patrones. Toca uno para abrirlo.</p></header>`;
+  GROUPS.forEach(g => {
+    h += `<h2 class="section-title">${esc(g.title)}</h2><p class="section-note">${esc(g.note)}</p><ul class="list">`;
+    g.items.forEach(it => {
+      h += `<li><a href="#${it.id}"><img class="thumb" src="${it.img}" alt=""><span class="name">${esc(it.name)}<span class="chip">${esc(it.level)}</span></span>
+        <span class="size">${esc(it.size)}</span><span class="desc">${esc(it.desc)}</span></a></li>`;
+    });
+    h += '</ul>';
+  });
+  h += `<div class="extra"><h2 class="section-title">Ayuda</h2><ul class="list"><li><a href="#glosario"><span class="thumb"></span>
+    <span class="name">Glosario</span><span class="size">abreviaturas</span>
+    <span class="desc">Puntos, equivalencias US/UK/ES y puntos especiales como el bobble.</span></a></li></ul></div>`;
+  app.innerHTML = h;
+  window.scrollTo(0, 0);
+}
+
+function renderDoc(id) {
+  const d = DOCS[id];
+  document.title = d.title;
+  const isPattern = id !== 'glosario';
+  app.innerHTML = `<div class="topbar"><a class="back" href="#">← Todos los patrones</a>
+    ${isPattern ? '<button class="btn" id="reset" type="button">Borrar marcas</button>' : ''}</div>
+    ${isPattern ? '<p class="hint">Toca una línea para marcarla como hecha. Se guarda en este dispositivo.</p>' : ''}
+    <article class="doc"></article>`;
+  const doc = app.querySelector('.doc');
+  doc.innerHTML = marked.parse(d.md, { headerIds: false, mangle: false });
+
+  doc.querySelectorAll('h1,h2,h3,h4').forEach(h => { h.id = slug(h.textContent); });
+  doc.querySelectorAll('table').forEach(t => {
+    const w = document.createElement('div'); w.className = 'scroll';
+    t.parentNode.insertBefore(w, t); w.appendChild(t);
+  });
+  doc.querySelectorAll('a[href]').forEach(a => {
+    const href = a.getAttribute('href');
+    if (/^https?:/.test(href)) { a.target = '_blank'; a.rel = 'noopener'; return; }
+    const [p, anchor] = href.split('#');
+    if (!p) { a.setAttribute('href', '#'); a.dataset.anchor = anchor || ''; return; }
+    const target = pathToId[resolvePath(d.path, p)];
+    if (target) { a.setAttribute('href', '#' + target); if (anchor) a.dataset.anchor = anchor; }
+  });
+  doc.addEventListener('click', e => {
+    const a = e.target.closest('a');
+    if (a && a.dataset.anchor !== undefined) {
+      const dest = a.getAttribute('href').slice(1);
+      if (dest && dest !== id) { e.preventDefault(); pendingAnchor = a.dataset.anchor; location.hash = dest; return; }
+      e.preventDefault();
+      const t = document.getElementById(a.dataset.anchor);
+      if (t) t.scrollIntoView();
+      return;
+    }
+    if (a) return;
+    const li = e.target.closest('li');
+    if (!li || !isPattern) return;
+    li.classList.toggle('done');
+    const all = [...doc.querySelectorAll('li')];
+    store.set('done:' + id, all.map((x, i) => x.classList.contains('done') ? i : -1).filter(i => i >= 0));
+  });
+  if (isPattern) {
+    const all = [...doc.querySelectorAll('li')];
+    store.get('done:' + id).forEach(i => all[i] && all[i].classList.add('done'));
+    document.getElementById('reset').addEventListener('click', () => {
+      all.forEach(x => x.classList.remove('done')); store.set('done:' + id, []);
+    });
+  }
+  window.scrollTo(0, 0);
+  if (pendingAnchor) {
+    const t = document.getElementById(pendingAnchor); pendingAnchor = null;
+    if (t) t.scrollIntoView();
+  }
+}
+
+function route() {
+  const id = decodeURIComponent(location.hash.replace(/^#/, ''));
+  if (id && DOCS[id]) renderDoc(id); else renderHome();
+}
+window.addEventListener('hashchange', route);
+route();
+</script>
