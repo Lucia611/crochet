@@ -150,10 +150,10 @@
   .empty { color: var(--muted); padding: 1rem 0; }
 
   /* Lectura: columna de texto de ~46rem y, en pantallas anchas, índice lateral */
-  .doc-layout { display: grid; grid-template-columns: minmax(0, 46rem); justify-content: center; gap: 3rem; }
+  .doc-layout { display: grid; grid-template-columns: minmax(0, 1fr); gap: 3rem; }
   .toc { display: none; }
   @media (min-width: 1040px) {
-    .doc-layout { grid-template-columns: minmax(0, 46rem) 16rem; }
+    .doc-layout { grid-template-columns: minmax(0, 1fr) 14rem; }
     .toc { display: block; position: sticky; top: 1rem; align-self: start; max-height: calc(100vh - 2rem); overflow: auto; padding-top: 3.4rem; }
   }
   .toc h2 { font: 700 .8rem var(--font-body); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin: 0 0 .6rem; }
@@ -168,9 +168,17 @@
   .doc h1 { font-size: clamp(1.8rem, 7vw, 2.5rem); color: var(--pine); margin: .25rem 0 .75rem; }
   .doc h2 { font-size: 1.45rem; margin: 2.25rem 0 .6rem; padding-top: .9rem; border-top: 1px solid var(--line); }
   .doc h3 { font-size: 1.15rem; margin: 1.6rem 0 .4rem; color: var(--berry); }
+  .doc > p, .doc > ul, .doc > ol, .doc > blockquote, .doc > h1, .doc > h2, .doc > h3, .doc > h4 { max-width: 50rem; }
   .doc p { margin: .7rem 0; }
-  .doc img { display: block; width: 100%; height: auto; border-radius: .6rem; margin: 1rem 0 .2rem; }
-  .doc p > em:only-child { display: block; color: var(--muted); font-size: .9rem; margin-bottom: 1rem; }
+  .gallery { display: grid; grid-template-columns: minmax(0, 1fr); gap: 1rem; margin: 1rem 0 1.5rem; }
+  @media (min-width: 560px) { .gallery { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media (min-width: 1040px) { .gallery { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+  .gallery:has(> figure:only-child) { grid-template-columns: minmax(0, 22rem); }
+  .gallery figure { margin: 0; }
+  .doc img { display: block; width: 100%; height: auto; border-radius: .6rem; cursor: zoom-in; }
+  .doc figcaption { color: var(--muted); font-size: .9rem; margin-top: .4rem; line-height: 1.4; }
+  .lightbox { position: fixed; inset: 0; z-index: 50; background: rgba(8, 16, 12, .92); display: flex; align-items: center; justify-content: center; padding: max(16px, env(safe-area-inset-top, 0px)) max(16px, env(safe-area-inset-right, 0px)) max(16px, env(safe-area-inset-bottom, 0px)) max(16px, env(safe-area-inset-left, 0px)); cursor: zoom-out; }
+  .lightbox img { max-width: 100%; max-height: 100%; width: auto; height: auto; object-fit: contain; border-radius: .5rem; }
   .doc ul, .doc ol { padding-left: 1.2rem; margin: .5rem 0 1rem; }
   .doc li { margin: .15rem 0; padding: .3rem .4rem; border-radius: .4rem; }
   .doc.tap li { cursor: pointer; -webkit-tap-highlight-color: transparent; }
@@ -316,6 +324,22 @@ function renderDoc(id) {
   const doc = app.querySelector('.doc');
   doc.innerHTML = marked.parse(d.md, { headerIds: false, mangle: false });
   doc.querySelectorAll('h1,h2,h3,h4').forEach(h => { h.id = slug(h.textContent); });
+  let run = [];
+  const flush = () => {
+    if (!run.length) return;
+    const g = document.createElement('div'); g.className = 'gallery';
+    run[0].before(g);
+    run.forEach(f => {
+      const fig = document.createElement('figure');
+      fig.appendChild(f.querySelector('img'));
+      const cap = f.querySelector('em');
+      if (cap) { const fc = document.createElement('figcaption'); fc.textContent = cap.textContent; fig.appendChild(fc); }
+      g.appendChild(fig); f.remove();
+    });
+    run = [];
+  };
+  [...doc.children].forEach(k => { if (k.tagName === 'P' && k.firstElementChild && k.firstElementChild.tagName === 'IMG') run.push(k); else flush(); });
+  flush();
   const heads = [...doc.querySelectorAll('h2')];
   const toc = app.querySelector('.toc');
   if (heads.length >= 3) {
@@ -335,6 +359,16 @@ function renderDoc(id) {
     if (target) { a.setAttribute('href', '#' + target); if (anchor) a.dataset.anchor = anchor; }
   });
   doc.addEventListener('click', e => {
+    if (e.target.tagName === 'IMG') {
+      const lb = document.createElement('div'); lb.className = 'lightbox';
+      const im = document.createElement('img'); im.src = e.target.src; im.alt = '';
+      lb.appendChild(im);
+      const close = () => { lb.remove(); document.removeEventListener('keydown', onKey); };
+      const onKey = ev => { if (ev.key === 'Escape') close(); };
+      lb.addEventListener('click', close); document.addEventListener('keydown', onKey);
+      document.body.appendChild(lb);
+      return;
+    }
     const a = e.target.closest('a');
     if (a && a.dataset.anchor !== undefined) {
       const dest = a.getAttribute('href').slice(1);
