@@ -16,7 +16,7 @@ Tres versiones de la misma flor. Elige según el uso:
 
 Las versiones A y B siguen las hojas de referencia que has enviado (ver [Referencias](#referencias)). La C parte del diagrama de la primera captura.
 
-> **tr** = vareta doble (treble crochet US): 2 lazadas antes de insertar el gancho. Ver [glosario](../../glosario.md).
+> **tr** = punto alto doble o vareta doble (treble crochet US): 2 lazadas antes de insertar el gancho. Ver [glosario](../../glosario.md).
 
 ---
 
